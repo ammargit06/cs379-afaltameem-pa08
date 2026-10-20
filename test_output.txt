@@ -1,0 +1,33 @@
+Building the VTable chain...
+
+Testing overrides and direct dispatch...
+
+  [PASS] Animal.speak() == '...'
+  [PASS] dispatch forwards receiver, arguments, and caller environment to Closure.call
+  [PASS] Animal.name() == 'Animal'
+  [PASS] Dog.speak() == 'Woof' (overridden)
+  [PASS] Puppy.name() == 'Puppy' (overridden)
+
+Testing inheritance fall-through (unoverridden methods)...
+
+  [PASS] Dog.name() falls through to Animal's implementation ('Animal')
+  [PASS] Puppy.speak() falls through to Dog's implementation ('Woof')
+
+Testing that unoverridden slots share the EXACT SAME callable (no duplication)...
+
+  [PASS] Dog's inherited 'name' slot IS Animal's 'name' closure (identity, not just equal)
+  [PASS] Puppy's inherited 'speak' slot IS Dog's 'speak' closure (identity)
+
+Testing dynamic dispatch: a Puppy held through any reference still resolves as a Puppy...
+
+  [PASS] dispatching on a Puppy instance resolves Puppy's OWN methods regardless of the holding variable
+
+Testing the polymorphism loop from Part A, Question 3...
+
+  [PASS] [Animal, Dog, Puppy] .name() loop == ['Animal', 'Animal', 'Puppy']
+
+Testing undefined method raises a clear error...
+
+  [PASS] error identifies both the class ('Animal') and the missing method ('fly')
+
+VTABLE_DISPATCH_VERIFIED
